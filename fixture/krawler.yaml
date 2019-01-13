@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: krawler
+  name: krawler
+  namespace: default
+spec:
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+  selector:
+    matchLabels:
+      app: krawler
+  template:
+    metadata:
+      labels:
+        app: krawler
+    spec:
+      containers:
+      - image: leoh0/krawler
+        imagePullPolicy: Always
+        name: krawler
+        volumeMounts:
+        - mountPath: /etc/kubernetes/
+          name: host-etc
+        - mountPath: /var/lib/kubelet/
+          name: host-lib
+        - mountPath: /etc/hostname
+          name: hostname
+        - mountPath: /tmp/proc
+          name: tmp-proc
+      restartPolicy: Always
+      tolerations:
+      - operator: "Exists"
+      volumes:
+      - hostPath:
+          path: /etc/kubernetes/
+        name: host-etc
+      - hostPath:
+          path: /var/lib/kubelet/
+        name: host-lib
+      - hostPath:
+          path: /etc/hostname
+        name: hostname
+      - hostPath:
+          path: /proc
+        name: tmp-proc
