@@ -4,11 +4,16 @@
 
 ## How to use
 
-    # after k8s 1.12 version
+after k8s 1.12 version
+
     $ kubectl check-cert
-    # or just use below (check name carefully `check_cert` not `check-cert`. See [Names with dashes and underscores](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/#names-with-dashes-and-underscores))
+
+or just use below (check name carefully `check_cert` not `check-cert`. See [Names with dashes and underscores](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/#names-with-dashes-and-underscores))
+
     $ kubectl-check_cert
-    # and you can also check kubelet certification
+
+and you can also check kubelet certification
+
     $ kubectl-check_cert --also-check-kubelet
 
 ## Example
@@ -30,21 +35,17 @@
 
 ## Install
 
-    # MacOS
-    # Download kubectl check-cert
-    $ curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.1/kubectl-check_cert_0.0.1_darwin_amd64.tar.gz | tar zxvf - > kubectl-check_cert
-    # Make the binary executable.
-    $ chmod +x kubectl-check_cert
-    # Move the binary in to your PATH.
-    $ sudo mv ./kubectl-check_cert /usr/local/bin/kubectl-check_cert
+MacOS
 
-    # Linux
-    # Download kubectl check-cert
-    $ curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.1/kubectl-check_cert_0.0.1_linux_amd64.tar.gz | tar zxvf - > kubectl-check_cert
-    # Make the binary executable.
-    $ chmod +x kubectl-check_cert
-    # Move the binary in to your PATH.
-    $ sudo mv ./kubectl-check_cert /usr/local/bin/kubectl-check_cert
+    curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.1/kubectl-check_cert_0.0.1_darwin_amd64.tar.gz | tar zxvf - > kubectl-check_cert
+    chmod +x kubectl-check_cert
+    sudo mv ./kubectl-check_cert /usr/local/bin/kubectl-check_cert
+
+Linux
+
+    curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.1/kubectl-check_cert_0.0.1_linux_amd64.tar.gz | tar zxvf - > kubectl-check_cert
+    chmod +x kubectl-check_cert
+    sudo mv ./kubectl-check_cert /usr/local/bin/kubectl-check_cert
 
 ## Explain certification types
 
@@ -78,13 +79,17 @@
 
 ## develop
 
-    # make normal build
+make normal build
+
     $ make build
 
-    # make static build
+
+make static build
+
     $ make static
 
-    # make static linux/amd build
+make static linux/amd build
+
     $ docker run --rm -it -v "$GOPATH":/go -w /go/src/github.com/leoh0/kubectl-check-cert golang:1.11.4 sh -c 'make release'
 
 ## Note
