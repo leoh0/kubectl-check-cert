@@ -28,6 +28,24 @@
     | kubelet            | minikube | server-cert                |  356 | 2020-01-10 14:51:39 +0000 UTC | /var/lib/kubelet/pki/kubelet.crt                     | Can be ignored this. |
     +--------------------+----------+----------------------------+------+-------------------------------+------------------------------------------------------+----------------------+
 
+## Install
+
+    # MacOS
+    # Download kubectl check-cert
+    $ curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.1/kubectl-check_cert_0.0.1_darwin_amd64.tar.gz | tar zxvf - > kubectl-check_cert
+    # Make the binary executable.
+    $ chmod +x kubectl-check_cert
+    # Move the binary in to your PATH.
+    $ sudo mv ./kubectl-check_cert /usr/local/bin/kubectl-check_cert
+
+    # Linux
+    # Download kubectl check-cert
+    $ curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.1/kubectl-check_cert_0.0.1_linux_amd64.tar.gz | tar zxvf - > kubectl-check_cert
+    # Make the binary executable.
+    $ chmod +x kubectl-check_cert
+    # Move the binary in to your PATH.
+    $ sudo mv ./kubectl-check_cert /usr/local/bin/kubectl-check_cert
+
 ## Explain certification types
 
 ### Apiserver

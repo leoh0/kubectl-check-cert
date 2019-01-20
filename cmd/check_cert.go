@@ -248,19 +248,19 @@ func (o *ExpirationOptions) Run(cmd *cobra.Command) error {
 	apiServerPods, err := getPods(
 		coreclient, kubesystemNamespace, "component=kube-apiserver,tier=control-plane")
 	if err != nil {
-		return err
+		fmt.Println("Apiserver is not exists. Skip.")
 	}
 
 	controllerManagerPods, err := getPods(
 		coreclient, kubesystemNamespace, "component=kube-controller-manager,tier=control-plane")
 	if err != nil {
-		return err
+		fmt.Println("ControllerManager is not exists. Skip.")
 	}
 
 	schedulerManagerPods, err := getPods(
 		coreclient, kubesystemNamespace, "component=kube-scheduler,tier=control-plane")
 	if err != nil {
-		return err
+		fmt.Println("Scheduler is not exists. Skip.")
 	}
 
 	dsPodCount := 0
