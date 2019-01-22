@@ -134,5 +134,5 @@ func TestJsonEncode(t *testing.T) {
 	}
 
 	t.Log(buffer.String())
-	assert.Equal(t, "{\"entry\":[{\"type\":\"kubelet\",\"node\":\"node\",\"name\":\"name\",\"days\":1,\"date\":\"2019-01-01T00:00:00Z\",\"path\":\"path\"}]}\n", buffer.String())
+	assert.Equal(t, "{\"entry\":[{\"type\":\"kubelet\",\"node\":\"node\",\"name\":\"name\",\"days\":1,\"due\":\"2019-01-01T00:00:00Z\",\"path\":\"path\"}]}\n", buffer.String())
 }
