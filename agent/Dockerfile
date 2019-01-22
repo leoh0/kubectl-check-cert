@@ -1,4 +1,4 @@
-FROM golang:1.10-alpine AS gobuild-base
+FROM golang:1.11-alpine AS gobuild-base
 RUN apk add --no-cache \
 	bash \
 	build-base \
@@ -7,12 +7,14 @@ RUN apk add --no-cache \
 	libseccomp-dev \
 	linux-headers \
 	make
-RUN go get -u github.com/golang/dep/...
 
 FROM gobuild-base AS krawler
-WORKDIR /go/src/github.com/leoh0/kubectl-check-cert/agent/krawler
-COPY . .
-RUN dep ensure
+WORKDIR /app
+COPY go.mod go.sum /app/
+RUN go mod tidy
+
+WORKDIR /app/agent
+COPY agent/* /app/agent/
 RUN	CGO_ENABLED=1 go build \
         -tags "seccomp static_build" \
         -ldflags " -extldflags -static" -o krawler . && mv krawler /usr/bin/krawler

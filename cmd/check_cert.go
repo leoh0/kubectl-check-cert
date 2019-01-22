@@ -89,7 +89,7 @@ type ExpirationOptions struct {
 // NewExpirationOptions provides an instance of ExpirationOptions with default values
 func NewExpirationOptions(streams genericclioptions.IOStreams) *ExpirationOptions {
 	return &ExpirationOptions{
-		configFlags:  genericclioptions.NewConfigFlags(),
+		configFlags:  genericclioptions.NewConfigFlags(true),
 		checkKubelet: false,
 		IOStreams:    streams,
 	}

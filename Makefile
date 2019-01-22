@@ -76,14 +76,14 @@ DOCKERHUB := leoh0
 AGENTNAME := krawler
 .PHONY: agent-image
 agent-image: ## Create the docker image from the Dockerfile.
-	@docker build --rm --force-rm -t $(DOCKERHUB)/$(AGENTNAME) agent
+	@docker build --rm --force-rm -t $(DOCKERHUB)/$(AGENTNAME) -f agent/Dockerfile .
 
 .PHONY: agent-image-push
 agent-image-push: ## Create the docker image from the Dockerfile.
 	@docker push $(DOCKERHUB)/$(AGENTNAME)
 
 .PHONY: krawler-recreate
-krawler-recreate: agent-image agent-image-push ## Create the docker image from the Dockerfile.
+krawler-recreate: 
 	@kubectl delete ds krawler || true 2>/dev/null
 	@kubectl create -f fixture/krawler.yaml
 

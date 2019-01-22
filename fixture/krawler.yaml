@@ -19,18 +19,27 @@ spec:
         app: krawler
     spec:
       containers:
-      - image: leoh0/krawler
+      - image: leoh0/krawler:v0.0.1
         imagePullPolicy: Always
         name: krawler
         volumeMounts:
         - mountPath: /etc/kubernetes/
           name: host-etc
+          readOnly: True
         - mountPath: /var/lib/kubelet/
           name: host-lib
+          readOnly: True
         - mountPath: /etc/hostname
           name: hostname
+          readOnly: True
         - mountPath: /tmp/proc
           name: tmp-proc
+          readOnly: True
+        env:
+          - name: KUBE_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
       restartPolicy: Always
       tolerations:
       - operator: "Exists"
