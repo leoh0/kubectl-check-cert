@@ -37,13 +37,13 @@ and you can also check kubelet certification
 
 MacOS
 
-    curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.1/kubectl-check_cert_0.0.1_darwin_amd64.tar.gz | tar zxvf - > kubectl-check_cert
+    curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.2/kubectl-check_cert_0.0.2_darwin_amd64.tar.gz | tar zxvf - > kubectl-check_cert
     chmod +x kubectl-check_cert
     sudo mv ./kubectl-check_cert /usr/local/bin/kubectl-check_cert
 
 Linux
 
-    curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.1/kubectl-check_cert_0.0.1_linux_amd64.tar.gz | tar zxvf - > kubectl-check_cert
+    curl -L https://github.com/leoh0/kubectl-check-cert/releases/download/v0.0.2/kubectl-check_cert_0.0.2_linux_amd64.tar.gz | tar zxvf - > kubectl-check_cert
     chmod +x kubectl-check_cert
     sudo mv ./kubectl-check_cert /usr/local/bin/kubectl-check_cert
 
