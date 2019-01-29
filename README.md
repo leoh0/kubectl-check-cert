@@ -90,7 +90,7 @@ make static build
 
 make static linux/amd build
 
-    $ docker run --rm -it -v "$GOPATH":/go -w /go/src/github.com/leoh0/kubectl-check-cert golang:1.11.4 sh -c 'make release'
+    $ docker run --rm -it -v "$GOPATH":/go -v "$PWD":/app -w /app golang:1.11.5 sh -c 'make release'
 
 ## Note
 
