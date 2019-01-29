@@ -28,10 +28,9 @@ func main() {
 		err    error
 	)
 
-	hostName := ReadorDie("/etc/hostname")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+	hostName := os.Getenv("NODENAME")
+	if hostName == "" {
+		ReadorDie("/etc/hostname")
 	}
 
 	result, err = Execute([]string{"sh", "-c", "grep -rw kubelet /tmp/proc/*/comm | cut -d'/' -f4"})

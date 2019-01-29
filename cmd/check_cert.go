@@ -48,8 +48,6 @@ const (
 	etcKubernetesName = "etc-kubernetes"
 	varLibKubeletPath = "/var/lib/kubelet/"
 	varLibKubeletName = "var-lib-kubelet"
-	hostnamePath      = "/etc/hostname"
-	hostnameName      = "hostname"
 	realProcPath      = "/proc/"
 	tmpProcPath       = "/tmp/proc/"
 	tmpProcName       = "tmp-proc"
@@ -175,7 +173,17 @@ func (o *ExpirationOptions) Run(cmd *cobra.Command) error {
 						HostPID:     true,
 						HostNetwork: true,
 						Containers: []corev1.Container{{
-							Name:            name,
+							Name: name,
+							Env: []corev1.EnvVar{
+								{
+									Name: "NODENAME",
+									ValueFrom: &corev1.EnvVarSource{
+										FieldRef: &corev1.ObjectFieldSelector{
+											FieldPath: "spec.nodeName",
+										},
+									},
+								},
+							},
 							Image:           imageName,
 							ImagePullPolicy: corev1.PullAlways,
 							VolumeMounts: []corev1.VolumeMount{
@@ -185,9 +193,6 @@ func (o *ExpirationOptions) Run(cmd *cobra.Command) error {
 								}, {
 									Name:      varLibKubeletName,
 									MountPath: varLibKubeletPath,
-								}, {
-									Name:      hostnameName,
-									MountPath: hostnamePath,
 								}, {
 									Name:      tmpProcName,
 									MountPath: tmpProcPath,
@@ -213,14 +218,6 @@ func (o *ExpirationOptions) Run(cmd *cobra.Command) error {
 									HostPath: &corev1.HostPathVolumeSource{
 										Type: &hostPathType,
 										Path: varLibKubeletPath,
-									},
-								},
-							}, {
-								Name: hostnameName,
-								VolumeSource: corev1.VolumeSource{
-									HostPath: &corev1.HostPathVolumeSource{
-										Type: &hostPathFileType,
-										Path: hostnamePath,
 									},
 								},
 							}, {
