@@ -17,6 +17,9 @@ import (
 	yaml "gopkg.in/yaml.v2"
 
 	"k8s.io/client-go/tools/clientcmd"
+
+	// ref:https://github.com/kubernetes/client-go/issues/242
+	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
 func main() {
